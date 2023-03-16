@@ -3,6 +3,8 @@ import numpy as np
 from typing import Union
 import pickle
 from fastapi import FastAPI
+import uvicorn
+import os
 
 
 
@@ -43,7 +45,6 @@ def read_item(userId,city,disease):
     b = predict_data(row_data,city,disease)
     return b.to_json(orient='records')
 
-
-
-    
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=os.getenv("PORT", default=3000), log_level="info")
 
